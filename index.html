@@ -4,116 +4,105 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Hephaestus</title>
-  <meta name="description" content="Hephaestus — an algorithm research lab focused on statistical arbitrage and ML alpha." />
+  <meta name="description" content="Hephaestus is a research lab focused on statistical arbitrage and ML-based alpha." />
   <style>
-    /* -------- tokens -------- */
+    /* ---------- tokens ---------- */
     :root{
-      --bg:#ffffff;           /* white background */
-      --text:#0b1f4d;         /* navy text */
-      --muted:#40537d;        /* softer navy for secondary text */
-      --link:#0b1f4d;         /* links match text */
-      --border:#e9edf5;       /* very light divider */
-      --max:880px;            /* content width */
+      --bg:#ffffff;          /* white background */
+      --ink:#0b1f4d;         /* navy text */
+      --ink-muted:#3c4d77;   /* softer navy */
+      --link:#1b4be2;        /* link blue */
+      --max:1100px;          /* content width */
+      --pad: clamp(16px, 4vw, 48px); /* side padding */
+      --lh: 1.4;
     }
 
-    /* -------- base -------- */
+    /* ---------- base ---------- */
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      color:var(--text);
+      color:var(--ink);
       background:var(--bg);
       font-family: ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      line-height:var(--lh);
       -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+      /* subtle original background: layered radial waves */
+      background-image:
+        radial-gradient(1200px 500px at 100% 10%, rgba(11,31,77,0.05) 0%, rgba(11,31,77,0.02) 40%, transparent 60%),
+        radial-gradient(1000px 420px at 100% 0%, rgba(11,31,77,0.05) 0%, transparent 70%);
+      background-repeat:no-repeat;
+      background-size:cover;
     }
-    a{color:var(--link); text-decoration:none}
-    a:hover{text-decoration:underline}
-    img{max-width:100%; display:block}
+    a{color:var(--link); text-decoration:underline}
+    a:hover{opacity:.9}
+    p{margin:0}
+    img{display:block; max-width:100%}
 
-    /* -------- layout -------- */
-    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
-    header{border-bottom:1px solid var(--border);}
-    .nav{display:flex; align-items:center; justify-content:space-between; padding:18px 0}
-    .brand{display:flex; align-items:center; gap:12px}
-    .brand img{height:24px; width:auto} /* replace logo.svg; adjust height here */
-    .brand span{font-weight:600; letter-spacing:.2px}
-
-    main{padding:72px 0}
-    .hero{padding:48px 0}
-    .hero h1{
-      font-size: clamp(2.1rem, 6vw, 3.6rem);
-      line-height:1.05;
-      letter-spacing:-0.01em;
-      margin:0 0 14px 0;
-    }
-    .hero p{
-      margin:0;
-      color:var(--muted);
-      font-size: clamp(1rem, 1.5vw, 1.125rem);
-      max-width:720px;
+    /* ---------- layout ---------- */
+    .page{max-width:var(--max); margin:0 auto; padding: calc(2*var(--pad)) var(--pad)}
+    h1{
+      margin:0 0 2rem 0;
+      font-size: clamp(2.2rem, 7vw, 4.2rem);
+      font-weight:700;
+      letter-spacing:-.01em;
+      line-height:1.08;
     }
 
-    .actions{display:flex; gap:16px; flex-wrap:wrap; margin-top:22px}
-    .btn{
-      display:inline-block;
-      padding:.7rem 1rem;
-      border:1px solid var(--text);
-      border-radius:999px;
-      font-weight:600;
+    .block{margin-top: clamp(24px, 6vh, 56px)}
+    .lead{font-size: clamp(1.05rem, 1.6vw, 1.25rem); color:var(--ink)}
+    .muted{color:var(--ink-muted)}
+
+    /* centered bottom logo */
+    .bottom-mark{
+      display:flex; align-items:center; justify-content:center;
+      margin: clamp(48px, 12vh, 120px) auto 24px auto;
     }
-    .btn.ghost{border-color:var(--text)}
-    .btn.fill{background:var(--text); color:#fff; border-color:var(--text)}
-    .btn:hover{text-decoration:none; opacity:.9}
+    .bottom-mark img{height:38px; width:auto; opacity:.9}
 
-    section{padding:28px 0}
-    .note{color:var(--muted);}
-
-    footer{border-top:1px solid var(--border); padding:16px 0; margin-top:60px; font-size:.95rem}
+    /* tiny footer line (optional) */
+    footer{color:var(--ink-muted); font-size:.95rem; text-align:center; padding-bottom:24px}
   </style>
 </head>
 <body>
 
-  <!-- header -->
-  <header>
-    <div class="wrap nav">
-      <a class="brand" href="#">
-        <!-- LOGO SLOT: replace src with your SVG/PNG -->
-        <img src="logo.svg" alt="Hephaestus logo" onerror="this.style.display='none'">
-        <span>Hephaestus</span>
-      </a>
-      <!-- minimal right side kept empty on purpose -->
-      <nav aria-label="primary"></nav>
-    </div>
-  </header>
+  <main class="page" id="top">
+    <h1>Hephaestus</h1>
 
-  <!-- main -->
-  <main>
-    <div class="wrap hero">
-      <h1>Crafted intelligence. Quantified edge.</h1>
-      <p>Hephaestus is an algorithm research lab focused on statistical arbitrage and ML-based alpha. We publish concise working papers with clear math and reproducible code.</p>
-      <div class="actions">
-        <a class="btn fill" href="#papers">Read the papers</a>
-        <a class="btn ghost" href="#contact">Get in touch</a>
-      </div>
-    </div>
+    <p class="block lead">
+      Hephaestus is an algorithm research lab focused on <b>statistical arbitrage</b> and <b>ML-based alpha</b>.
+      We believe durable edge comes from first-principles math and reproducible engineering.
+    </p>
 
-    <!-- optional tiny list of highlights; keep minimal or remove -->
-    <section class="wrap" id="papers">
-      <p class="note">
-        WP-001: The Half-Life of Alpha · WP-002: Adaptive Weighting · WP-003: Entropy & Predictability
-      </p>
-    </section>
+    <p class="block muted">
+      We’re in the early stages and will share more soon. If you’re an applied ML researcher,
+      quant engineer, or systems-minded builder, email
+      <a href="mailto:careers@hephaestus.lab">careers@hephaestus.lab</a>
+      or apply <a href="#apply">here</a>.
+    </p>
+
+    <p class="block muted">
+      Follow along on <a href="https://x.com/" target="_blank" rel="noopener">X</a> and
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>.
+    </p>
+
+    <p class="block muted">
+      We’re also screening participants for a labeled data study. Interested parties can sign up
+      <a href="#study">here</a>.
+    </p>
+
+    <!-- centered logo at the bottom -->
+    <div class="bottom-mark">
+      <!-- TODO: replace with your SVG/PNG -->
+      <img src="logo.svg" alt="Hephaestus mark" onerror="this.style.display='none'">
+    </div>
   </main>
 
-  <!-- footer -->
   <footer>
-    <div class="wrap">
-      <div>© <span id="y"></span> Hephaestus</div>
-    </div>
+    © <span id="y"></span> Hephaestus
   </footer>
 
   <script>
-    // set year without adding complexity
     document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 </body>
